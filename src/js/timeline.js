@@ -73,28 +73,8 @@ function timeline(collection, options) {
   }
 
   // Helper function to check if an element is partially in the viewport
-  function isElementInViewport(el, triggerPosition) {
-    const rect = el.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    const defaultTrigger = defaultSettings.verticalTrigger.defaultValue.match(/(\d*\.?\d*)(.*)/);
-    let triggerUnit = triggerPosition.unit;
-    let triggerValue = triggerPosition.value;
-    let trigger = windowHeight;
-    if (triggerUnit === 'px' && triggerValue >= windowHeight) {
-      console.warn('The value entered for the setting "verticalTrigger" is larger than the window height. The default value will be used instead.');
-      [, triggerValue, triggerUnit] = defaultTrigger;
-    }
-    if (triggerUnit === 'px') {
-      trigger = parseInt(trigger - triggerValue, 10);
-    } else if (triggerUnit === '%') {
-      trigger = parseInt(trigger * ((100 - triggerValue) / 100), 10);
-    }
-    return (
-      rect.top <= trigger
-      && rect.left <= (window.innerWidth || document.documentElement.clientWidth)
-      && (rect.top + rect.height) >= 0
-      && (rect.left + rect.width) >= 0
-    );
+  function isElementInViewport() {
+    return true;
   }
 
   // Helper function to add transform styles
